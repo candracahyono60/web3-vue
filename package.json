@@ -34,7 +34,7 @@
   "scripts": {
     "dev": "vite --port 3333 --open",
     "build": "vite build && vue-tsc --emitDeclarationOnly",
-    "preview": "vite build && http-server ./example",
+    "preview": "vite preview",
     "vitebook:dev": "vitebook dev",
     "vitebook:build": "vitebook build",
     "vitebook:preview": "vitebook preview",
@@ -72,7 +72,6 @@
     "autoprefixer": "^10.4.4",
     "eslint": "^8.14.0",
     "eslint-plugin-cypress": "^2.12.1",
-    "http-server": "^14.1.0",
     "pnpm": "^6.32.9",
     "postcss": "^8.4.12",
     "postcss-import": "^14.1.0",
