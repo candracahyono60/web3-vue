@@ -1,0 +1,59 @@
+<script lang="ts">
+import { computed, defineComponent, toRefs } from 'vue'
+import WalletIcon from './WalletIcon.vue'
+import { useWallet } from '~/useWallet'
+
+export default defineComponent({
+  components: {
+    WalletIcon,
+  },
+  props: {
+    disabled: Boolean,
+  },
+  setup(props, { emit }) {
+    const { disabled } = toRefs(props)
+    const { wallet, disconnect, disconnecting } = useWallet()
+
+    const content = computed(() => {
+      if (disconnecting.value)
+        return 'Disconnecting ...'
+      if (wallet.value)
+        return 'Disconnect'
+      return 'Disconnect Wallet'
+    })
+
+    const handleClick = (event: MouseEvent) => {
+      emit('click', event)
+      if (event.defaultPrevented)
+        return
+      disconnect().catch(() => {})
+    }
+
+    const scope = {
+      wallet,
+      disconnecting,
+      disabled,
+      content,
+      handleClick,
+    }
+
+    return {
+      scope,
+      ...scope,
+    }
+  },
+})
+</script>
+
+<template>
+  <slot v-bind="scope">
+    <button
+      class="swv-button swv-button-trigger"
+      :disabled="disabled || disconnecting || !wallet"
+      @click="handleClick"
+    >
+      <wallet-icon v-if="wallet" :wallet="wallet" />
+      <p v-text="content" />
+    </button>
+  </slot>
+</template>
