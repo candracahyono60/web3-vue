@@ -12,7 +12,7 @@ roadblock. However, there's never a truly perfect time to start learning it, so 
 
 ### Vue 3.2 & Vite
 
-This project uses [Vue][vue] & [Vite][vite] to build [Web Components][web-components].
+This project uses [Vue][vue] & [Vite][vite] to build [Vue Components][vue-components].
 
 ### Architecture
 
@@ -32,14 +32,14 @@ Please view the README and the instructions below on how to install the project 
 **Working on your first Pull Request?** You can learn how from this free series
 [How to Contribute to an Open Source Project on GitHub][pr-beginner-series].
 
-Head over to the [repository][table-elements] on GitHub and click the Fork button in the top
+Head over to the [repository][web3-vue] on GitHub and click the Fork button in the top
 right corner. After the project has been forked, run the following commands in your terminal:
 
 ```bash
 # Replace {github-username} with your GitHub username.
-$: git clone https://github.com/{github-username}/table-elements --depth=1
+$: git clone https://github.com/{github-username}/web3-vue --depth=1
 
-$: cd table-elements
+$: cd web3-vue
 
 # Create a branch for your PR, replace {issue-no} with the GitHub issue number.
 $: git checkout -b issue-{issue-no}
@@ -50,7 +50,7 @@ pull requests from the forked branch.
 
 ```bash
 # Add the original repository as a "remote" called "upstream".
-$: git remote add upstream git@github.com:meemalabs/table-elements.git
+$: git remote add upstream git@github.com:meemalabs/web3-vue.git
 
 # Fetch the git information from the remote.
 $: git fetch upstream
@@ -93,7 +93,7 @@ $: git push
 
 ## 🎉 Pull Request
 
-When you're all done head over to the [repository][table-elements], and click the big green
+When you're all done head over to the [repository][web3-vue], and click the big green
 `Compare & Pull Request` button that should appear after you've pushed changes to your fork.
 
 Don't expect your PR to be accepted immediately or even accepted at all. Give the community time to
@@ -103,7 +103,7 @@ contribution is appreciated more than you can imagine, and even a failed PR can 
 [typescript]: https://www.typescriptlang.org
 [vitebook]: https://vitebook.dev/
 [vue]: https://v3.vuejs.org/
-[web-components]: https://developer.mozilla.org/en-US/docs/Web/Web_Components
-[table-elements]: https://github.com/meemalabs/table-elements
+[vue-components]: https://vuejs.org/v2/guide/components.html
+[web3-vue]: https://github.com/meemalabs/web3-vue
 [semantic-commit-style]: https://gist.github.com/joshbuchea/6f47e86d2510bce28f8e7f42ae84c716
 [pr-beginner-series]: https://app.egghead.io/courses/how-to-contribute-to-an-open-source-project-on-github

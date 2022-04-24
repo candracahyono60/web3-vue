@@ -1,5 +1,5 @@
 {
-  "name": "crypto-wallets-vue",
+  "name": "web3-vue",
   "version": "0.0.1",
   "description": "Crypto wallet login/integration for Vue 3. Currently supporting the Solana blockchain.",
   "keywords": [
@@ -10,7 +10,8 @@
     "javascript",
     "solana",
     "blockchain",
-    "web3"
+    "web3",
+    "nfts"
   ],
   "author": "Open Crypto Labs",
   "license": "MIT",

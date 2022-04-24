@@ -54,14 +54,14 @@ import { initWallet } from 'web3-vue'
 initWallet(walletOptions)
 ```
 
-Finally, import and render the `WalletMultiButton` component to allow users to select a wallet et connect to it.
+Finally, import and render the `WalletLogin` component to allow users to select a wallet to connect to it.
 
 ```vue
 <script setup>
-import { WalletMultiButton } from 'web3-vue'
+import { WalletLogin } from 'web3-vue'
 </script>
 
 <template>
-  <wallet-multi-button />
+  <WalletLogin />
 </template>
 ```
