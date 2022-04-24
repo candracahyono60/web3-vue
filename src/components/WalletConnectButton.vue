@@ -1,61 +1,55 @@
-<script lang="ts">
-import { computed, defineComponent, toRefs } from 'vue'
-import WalletIcon from './WalletIcon.vue'
+<script setup lang="ts">
 import { useWallet } from '~/useWallet'
 
-export default defineComponent({
-  components: {
-    WalletIcon,
-  },
-  props: {
-    disabled: Boolean,
-  },
-  setup(props, { emit }) {
-    const { disabled } = toRefs(props)
-    const { wallet, connect, connecting, connected } = useWallet()
+const { disabled } = defineProps<{
+  disabled: boolean
+}>()
 
-    const content = computed(() => {
-      if (connecting.value)
-        return 'Connecting ...'
-      if (connected.value)
-        return 'Connected'
-      if (wallet.value)
-        return 'Connect'
-      return 'Connect Wallet'
-    })
+const emit = defineEmits<{
+  (e: 'click', event: MouseEvent): void
+}>()
 
-    const onClick = (event: MouseEvent) => {
-      emit('click', event)
-      if (event.defaultPrevented)
-        return
-      connect().catch(() => {})
-    }
+const { wallet, connect, connecting, connected } = useWallet()
 
-    const scope = {
-      wallet,
-      disabled,
-      connecting,
-      connected,
-      content,
-      onClick,
-    }
+// let disabled = computed(() => disabled || !wallet || connecting || connected)
 
-    return {
-      scope,
-      ...scope,
-    }
-  },
+const content = $computed(() => {
+  if (connecting)
+    return 'Connecting ...'
+  if (connected)
+    return 'Connected'
+  if (wallet)
+    return 'Connect'
+  return 'Connect Wallet'
 })
+
+const onClick = (event: MouseEvent) => {
+  emit('click', event)
+
+  if (event.defaultPrevented)
+    return
+
+  connect().catch(() => {})
+}
+
+const scope = {
+  wallet,
+  disabled,
+  connecting,
+  connected,
+  content,
+  onClick,
+}
 </script>
 
 <template>
   <slot v-bind="scope">
     <button
       class="swv-button swv-button-trigger"
-      :disabled="disabled || !wallet || connecting || connected"
+      :disabled="true"
       @click="onClick"
     >
-      <wallet-icon v-if="wallet" :wallet="wallet" />
+      <WalletIcon v-if="wallet" :wallet="wallet" />
       <p v-text="content" />
     </button>
   </slot>

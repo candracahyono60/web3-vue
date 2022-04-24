@@ -127,7 +127,7 @@ export default defineComponent({
               >
                 <button class="swv-button">
                   <p v-text="wallet.name" />
-                  <wallet-icon :wallet="wallet" />
+                  <WalletIcon :wallet="wallet" />
                 </button>
               </li>
             </ul>

@@ -35,7 +35,6 @@ const config = {
       extensions: ['vue'],
       dts: '../src/components.d.ts',
     }),
-
   ],
 
   define: {

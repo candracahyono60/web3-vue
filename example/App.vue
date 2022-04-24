@@ -3,7 +3,8 @@ import { computed, ref, watchEffect } from 'vue'
 import { useLocalStorage } from '@vueuse/core'
 import { Connection, Keypair, PublicKey, SystemProgram, clusterApiUrl } from '@solana/web3.js'
 import { AnchorProvider, Program } from '@project-serum/anchor'
-import { WalletMultiButton, useAnchorWallet } from '../src'
+import { useAnchorWallet } from '../src'
+import WalletLogin from '../src/components/WalletLogin.vue'
 import idl from './idl.json'
 
 const programID = new PublicKey(idl.metadata.address)
@@ -11,8 +12,9 @@ const preflightCommitment = 'processed'
 
 export default {
   components: {
-    WalletMultiButton,
+    WalletLogin,
   },
+
   setup() {
     const dark = ref(false)
     const wallet = useAnchorWallet()
@@ -86,7 +88,7 @@ export default {
       </button>
 
       <!-- Solana Wallets Vue. -->
-      <wallet-multi-button :dark="dark" />
+      <wallet-login :dark="dark" />
     </div>
 
     <!-- Centered. -->

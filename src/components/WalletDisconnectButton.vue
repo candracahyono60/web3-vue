@@ -52,7 +52,7 @@ export default defineComponent({
       :disabled="disabled || disconnecting || !wallet"
       @click="handleClick"
     >
-      <wallet-icon v-if="wallet" :wallet="wallet" />
+      <WalletIcon v-if="wallet" :wallet="wallet" />
       <p v-text="content" />
     </button>
   </slot>

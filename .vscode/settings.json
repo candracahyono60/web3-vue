@@ -19,7 +19,9 @@
     "solflare",
     "sollet",
     "devnet",
-    "mainnet"
+    "mainnet",
+    "keypair",
+    "booleanish"
   ],
   "editor.formatOnSave": true,
   "editor.codeActionsOnSave": {
