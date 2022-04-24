@@ -33,7 +33,8 @@ export default {
 
     const createCounter = async() => {
       if (!wallet.value)
-        return alert('Connect your wallet first.')
+        // eslint-disable-next-line no-console
+        return console.log('Connect your wallet first.')
 
       const newCounter = Keypair.generate()
       await program.value.rpc.create({
@@ -49,10 +50,11 @@ export default {
 
     const incrementCounter = async() => {
       if (!wallet.value)
-        return alert('Connect your wallet first.')
-
+        // eslint-disable-next-line no-console
+        return console.log('Connect your wallet first.')
       else if (!counterPublicKey.value)
-        return alert('Create a new counter first.')
+        // eslint-disable-next-line no-console
+        return console.log('Create a new counter first.')
 
       await program.value.rpc.increment({
         accounts: {
@@ -75,9 +77,13 @@ export default {
 
 <template>
   <div class="h-screen w-screen flex" :class="dark ? 'bg-gray-900 text-gray-100' : 'bg-gray-100 text-gray-700'">
-    <!-- Top-Right Corner. -->
-    <div class="absolute top-0 right-0 p-8 flex space-x-8">
-      <!-- Dark Button. -->
+    <div class="absolute top-0 right-0 p-8 flex items-center space-x-8">
+      <WalletLogin
+        :theme="dark ? 'dark' : 'light'"
+        provider="phantom, slope, solflare"
+        auto-connect="true"
+      />
+
       <button class="rounded-full p-3" :class="dark ? 'bg-white/10 hover:bg-white/20 text-gray-200' : 'bg-black/10 hover:bg-black/20 text-gray-600'" @click="dark = !dark">
         <svg v-if="dark" xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
           <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z" />
@@ -86,9 +92,6 @@ export default {
           <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z" />
         </svg>
       </button>
-
-      <!-- Solana Wallets Vue. -->
-      <wallet-login :dark="dark" />
     </div>
 
     <!-- Centered. -->

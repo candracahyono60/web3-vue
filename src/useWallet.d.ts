@@ -1,3 +1,3 @@
-import type { WalletStore, WalletStoreProps } from './createWalletStore';
-export declare const useWallet: () => WalletStore;
-export declare const initWallet: (walletStoreProps: WalletStoreProps) => void;
+import type { WalletStore, WalletStoreProps } from './createWalletStore'
+export declare const useWallet: () => WalletStore
+export declare const initWallet: (walletStoreProps: WalletStoreProps) => void

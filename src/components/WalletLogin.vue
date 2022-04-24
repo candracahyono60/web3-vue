@@ -1,107 +1,117 @@
 <script setup lang="ts">
-import { useWallet } from '~/useWallet'
+import { Popover, PopoverButton, PopoverPanel } from '@headlessui/vue'
+import { ChevronDownIcon } from '@heroicons/vue/solid'
+import { WalletAdapterNetwork } from '@solana/wallet-adapter-base'
+import {
+  PhantomWalletAdapter,
+  SlopeWalletAdapter,
+  SolflareWalletAdapter,
+} from '@solana/wallet-adapter-wallets'
+import WalletIcon from './WalletIcon.vue'
+import { initWallet } from '~/useWallet'
+import type { WalletStoreProps } from '~/createWalletStore'
 
 const {
-  featured = 3,
-  logo,
-  dark = false,
+  theme = 'light',
+  provider = 'phantom, slope, solflare',
+  autoConnect = false,
 } = defineProps<{
-  featured?: Number
-  logo?: String
-  dark?: Boolean
+  theme?: string
+  provider?: string
+  autoConnect: boolean
 }>()
 
-const { publicKey, wallet, disconnect } = useWallet()
+// eslint-disable-next-line no-console
+console.log('theme', theme)
 
-const dropdownPanel = ref<HTMLElement>()
-let dropdownOpened = $ref(false)
-const openDropdown = () => (dropdownOpened = true)
-const closeDropdown = () => (dropdownOpened = false)
+const wallets: (PhantomWalletAdapter | SlopeWalletAdapter | SolflareWalletAdapter)[] = []
 
-onClickOutside(dropdownPanel, closeDropdown)
+if (provider.includes('phantom'))
+  wallets.push(new PhantomWalletAdapter())
 
-const publicKeyBase58 = $computed(() => publicKey.value?.toBase58())
-const publicKeyTrimmed = computed(() => {
-  if (!wallet.value || !publicKeyBase58)
-    return null
-  return `${publicKeyBase58.slice(0, 4)}..${publicKeyBase58.slice(-4)}`
-})
+if (provider.includes('slope'))
+  wallets.push(new SlopeWalletAdapter())
 
-const { copy, copied: addressCopied, isSupported: canCopy } = useClipboard()
-const copyAddress = () => publicKeyBase58 && copy(publicKeyBase58)
+if (provider.includes('solflare'))
+  wallets.push(new SolflareWalletAdapter({ network: WalletAdapterNetwork.Devnet }))
 
-// Define the bindings given to scoped slots.
-const scope = {
-  featured,
-  logo,
-  dark,
-  wallet,
-  publicKey,
-  publicKeyTrimmed,
-  publicKeyBase58,
-  canCopy,
-  addressCopied,
-  dropdownPanel,
-  dropdownOpened,
-  openDropdown,
-  closeDropdown,
-  copyAddress,
-  disconnect,
+const options: WalletStoreProps = {
+  wallets,
+  autoConnect,
 }
+
+initWallet(options)
+
+// const { publicKey, wallet, disconnect } = useWallet()
+
+// const dropdownPanel = ref<HTMLElement>()
+// let dropdownOpened = $ref(false)
+// const openDropdown = () => (dropdownOpened = true)
+// const closeDropdown = () => (dropdownOpened = false)
+
+// onClickOutside(dropdownPanel, closeDropdown)
+
+// const publicKeyBase58 = $computed(() => publicKey.value?.toBase58())
+// const publicKeyTrimmed = computed(() => {
+//   if (!wallet.value || !publicKeyBase58)
+//     return null
+//   return `${publicKeyBase58.slice(0, 4)}..${publicKeyBase58.slice(-4)}`
+// })
+
+// const { copy, copied: addressCopied, isSupported: canCopy } = useClipboard()
+// const copyAddress = () => publicKeyBase58 && copy(publicKeyBase58)
 </script>
 
 <template>
-  <WalletModalProvider :featured="featured" :logo="logo" :dark="dark">
-    <template #default="modalScope">
-      <slot v-bind="{ ...modalScope, ...scope }">
-        <button v-if="!wallet" class="text-red-600 swv-button swv-button-trigger" @click="modalScope.openModal">
-          Select Wallet
-        </button>
-        <WalletConnectButton v-else-if="!publicKeyBase58" />
-        <div v-else class="swv-dropdown">
-          <slot name="dropdown-button" v-bind="{ ...modalScope, ...scope }">
-            <button
-              class="swv-button swv-button-trigger"
-              :style="{ pointerEvents: dropdownOpened ? 'none' : 'auto' }"
-              :aria-expanded="dropdownOpened"
-              :title="publicKeyBase58"
-              @click="openDropdown"
-            >
-              <WalletIcon :wallet="wallet" />
-              <p v-text="publicKeyTrimmed" />
-            </button>
-          </slot>
-          <slot name="dropdown" v-bind="{ ...modalScope, ...scope }">
-            <ul
-              ref="dropdownPanel"
-              aria-label="dropdown-list"
-              class="swv-dropdown-list"
-              :class="{ 'swv-dropdown-list-active': dropdownOpened }"
-              role="menu"
-            >
-              <slot name="dropdown-list" v-bind="{ ...modalScope, ...scope }">
-                <li v-if="canCopy" class="swv-dropdown-list-item" role="menuitem" @click="copyAddress">
-                  {{ addressCopied ? "Copied" : "Copy address" }}
-                </li>
-                <li class="swv-dropdown-list-item" role="menuitem" @click="modalScope.openModal(); closeDropdown();">
-                  Change wallet
-                </li>
-                <li class="swv-dropdown-list-item" role="menuitem" @click="disconnect">
-                  Disconnect
-                </li>
-              </slot>
-            </ul>
-          </slot>
-        </div>
-      </slot>
-    </template>
+  <div class="px-4">
+    <Popover v-slot="{ open }" class="relative">
+      <PopoverButton
+        :class="open ? '' : 'text-opacity-90'"
+        class="inline-flex items-center px-3 py-2 text-base font-medium text-white bg-orange-700 rounded-md group hover:text-opacity-100 focus:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-opacity-75"
+      >
+        <span>{{ 'Select Wallet' }}</span>
+        <ChevronDownIcon
+          :class="open ? '' : 'text-opacity-70'"
+          class="w-5 h-5 ml-2 text-orange-300 transition duration-150 ease-in-out group-hover:text-opacity-80"
+          aria-hidden="true"
+        />
+      </PopoverButton>
 
-    <!-- Enable modal overrides. -->
-    <template #overlay="modalScope">
-      <slot name="modal-overlay" v-bind="{ ...modalScope, ...scope }" />
-    </template>
-    <template #modal="modalScope">
-      <slot name="modal" v-bind="{ ...modalScope, ...scope }" />
-    </template>
-  </WalletModalProvider>
+      <transition
+        enter-active-class="transition duration-200 ease-out"
+        enter-from-class="translate-y-1 opacity-0"
+        enter-to-class="translate-y-0 opacity-100"
+        leave-active-class="transition duration-150 ease-in"
+        leave-from-class="translate-y-0 opacity-100"
+        leave-to-class="translate-y-1 opacity-0"
+      >
+        <PopoverPanel
+          class="absolute z-10 w-screen max-w-sm px-4 mt-3 transform -translate-x-1/2 left-1/2 sm:px-0 lg:max-w-xs"
+        >
+          <div
+            class="overflow-hidden rounded-lg shadow-lg ring-1 ring-black ring-opacity-5"
+          >
+            <div class="relative grid gap-8 bg-white p-7 lg:grid-cols-1">
+              <a
+                v-for="item in wallets"
+                :key="item.name"
+                class="flex items-center p-2 -m-3 transition duration-150 ease-in-out rounded-lg hover:bg-gray-50 focus:outline-none focus-visible:ring focus-visible:ring-orange-500 focus-visible:ring-opacity-50 cursor-pointer"
+              >
+                <div
+                  class="flex items-center justify-center flex-shrink-0 w-10 h-10 text-white sm:h-12 sm:w-12"
+                >
+                  <WalletIcon v-if="item" :wallet="item" />
+                </div>
+                <div class="ml-4">
+                  <h2 class="text-2xl font-medium text-gray-900">
+                    {{ item.name }}
+                  </h2>
+                </div>
+              </a>
+            </div>
+          </div>
+        </PopoverPanel>
+      </transition>
+    </Popover>
+  </div>
 </template>

@@ -13,17 +13,10 @@
     "web3",
     "nfts"
   ],
-  "author": "Open Crypto Labs",
   "license": "MIT",
-  "files": [
-    "dist",
-    "src",
-    "styles.css",
-    "postcss.config.js"
-  ],
+  "author": "Open Crypto Labs",
   "main": "./dist/crypto-wallets-vue.umd.js",
   "module": "./dist/crypto-wallets-vue.es.js",
-  "typings": "./dist/index.d.ts",
   "exports": {
     ".": {
       "import": "./dist/crypto-wallets-vue.es.js",
@@ -32,6 +25,13 @@
     "./styles.css": "./src/styles/index.css",
     "./postcss.config.js": "./postcss.config.js"
   },
+  "files": [
+    "dist",
+    "src",
+    "styles.css",
+    "postcss.config.js"
+  ],
+  "typings": "./dist/index.d.ts",
   "scripts": {
     "dev": "vite --port 3333 --open",
     "build": "vite build && vue-tsc --emitDeclarationOnly",
@@ -47,22 +47,30 @@
     "coverage": "vitest run --coverage",
     "typecheck": "vue-tsc --emitDeclarationOnly"
   },
+  "peerDependencies": {
+    "@solana/wallet-adapter-wallets": "^0.16"
+  },
   "dependencies": {
     "@solana/wallet-adapter-base": "^0.9.3",
     "@solana/web3.js": "^1.32.1",
+    "pinia": "^2.0.13",
     "vue": "^3.2.25"
   },
   "devDependencies": {
     "@antfu/eslint-config": "0.20.7",
     "@babel/runtime": "7.17.9",
     "@babel/types": "^7.17.0",
+    "@headlessui/vue": "^1.5.0",
+    "@heroicons/vue": "^1.0.6",
     "@project-serum/anchor": "0.24.2",
     "@solana/wallet-adapter-wallets": "0.16.0",
     "@tailwindcss/aspect-ratio": "0.4.0",
     "@tailwindcss/forms": "0.5.0",
     "@tailwindcss/line-clamp": "0.3.1",
     "@tailwindcss/typography": "0.5.2",
+    "@types/keccak": "^3.0.1",
     "@types/node": "17.0.25",
+    "@types/readable-stream": "^2.3.13",
     "@vitebook/client": "0.23.6",
     "@vitebook/core": "0.23.6",
     "@vitebook/markdown-vue": "0.23.6",
@@ -93,8 +101,5 @@
   },
   "contributors": [
     "Chris Breuer <chris@meema.xyz>"
-  ],
-  "peerDependencies": {
-    "@solana/wallet-adapter-wallets": "^0.16"
-  }
+  ]
 }

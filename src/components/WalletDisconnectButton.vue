@@ -1,48 +1,39 @@
-<script lang="ts">
-import { computed, defineComponent, toRefs } from 'vue'
+<script setup lang="ts">
 import WalletIcon from './WalletIcon.vue'
 import { useWallet } from '~/useWallet'
 
-export default defineComponent({
-  components: {
-    WalletIcon,
-  },
-  props: {
-    disabled: Boolean,
-  },
-  setup(props, { emit }) {
-    const { disabled } = toRefs(props)
-    const { wallet, disconnect, disconnecting } = useWallet()
+const { disabled } = defineProps<{
+  disabled: boolean
+}>()
 
-    const content = computed(() => {
-      if (disconnecting.value)
-        return 'Disconnecting ...'
-      if (wallet.value)
-        return 'Disconnect'
-      return 'Disconnect Wallet'
-    })
+const emit = defineEmits<{
+  (e: 'click', event: MouseEvent): void
+}>()
 
-    const handleClick = (event: MouseEvent) => {
-      emit('click', event)
-      if (event.defaultPrevented)
-        return
-      disconnect().catch(() => {})
-    }
+const { wallet, disconnect, disconnecting } = useWallet()
 
-    const scope = {
-      wallet,
-      disconnecting,
-      disabled,
-      content,
-      handleClick,
-    }
-
-    return {
-      scope,
-      ...scope,
-    }
-  },
+const content = computed(() => {
+  if (disconnecting.value)
+    return 'Disconnecting ...'
+  if (wallet.value)
+    return 'Disconnect'
+  return 'Disconnect Wallet'
 })
+
+const handleClick = (event: MouseEvent) => {
+  emit('click', event)
+  if (event.defaultPrevented)
+    return
+  disconnect().catch(() => {})
+}
+
+const scope = {
+  wallet,
+  disconnecting,
+  disabled,
+  content,
+  handleClick,
+}
 </script>
 
 <template>
