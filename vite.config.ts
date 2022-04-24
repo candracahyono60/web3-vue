@@ -4,13 +4,9 @@ import Vue from '@vitejs/plugin-vue'
 import AutoImport from 'unplugin-auto-import/vite'
 import Components from 'unplugin-vue-components/vite'
 
-/**
- * @type {import('vite').UserConfig}
- */
+/** @type {import('vite').UserConfig} */
 const config = {
-  server: {
-    open: '/example/index.html',
-  },
+  root: './example',
 
   resolve: {
     dedupe: ['vue'],
@@ -27,7 +23,7 @@ const config = {
     // https://github.com/antfu/unplugin-auto-import
     AutoImport({
       imports: ['vue', '@vueuse/core'],
-      dts: 'src/auto-imports.d.ts',
+      dts: '../src/auto-imports.d.ts',
       eslintrc: {
         enabled: true,
       },
@@ -35,9 +31,9 @@ const config = {
 
     // https://github.com/antfu/unplugin-vue-components
     Components({
-      dirs: ['src/components'],
+      dirs: ['./src/components'],
       extensions: ['vue'],
-      dts: 'src/components.d.ts',
+      dts: '../src/components.d.ts',
     }),
 
   ],
@@ -55,7 +51,7 @@ const config = {
     rollupOptions: {
       external: ['vue', '@solana/web3.js', '@solana/wallet-adapter-base'],
       output: {
-        exports: 'named',
+        // exports: 'named',
         globals: {
           'vue': 'Vue',
           '@solana/web3.js': 'SolanaWeb3',
@@ -70,7 +66,7 @@ const config = {
 
   test: {
     include: ['tests/**/*.test.ts'],
-    environment: 'jsdom',
+    // environment: 'jsdom',
     deps: {
       inline: ['@vue', '@vueuse', 'vue-demi'],
     },

@@ -2,7 +2,7 @@
 import { computed, ref, watchEffect } from 'vue'
 import { useLocalStorage } from '@vueuse/core'
 import { Connection, Keypair, PublicKey, SystemProgram, clusterApiUrl } from '@solana/web3.js'
-import { Program, Provider } from '@project-serum/anchor'
+import { AnchorProvider, Program } from '@project-serum/anchor'
 import { WalletMultiButton, useAnchorWallet } from '../src'
 import idl from './idl.json'
 
@@ -17,7 +17,7 @@ export default {
     const dark = ref(false)
     const wallet = useAnchorWallet()
     const connection = new Connection(clusterApiUrl('devnet'), preflightCommitment)
-    const provider = computed(() => new Provider(connection, wallet.value, { preflightCommitment }))
+    const provider = computed(() => new AnchorProvider(connection, wallet.value, { preflightCommitment }))
     const program = computed(() => new Program(idl, programID, provider.value))
 
     const counterPublicKey = useLocalStorage('counterPublicKey', null)

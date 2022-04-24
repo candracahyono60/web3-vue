@@ -7,11 +7,11 @@ import {
   SolletWalletAdapter,
   TorusWalletAdapter,
 } from '@solana/wallet-adapter-wallets'
-import SolanaWallets from '../src/index'
+import web3 from '../src/index'
 import App from './App.vue'
 import '../src/styles/index.css'
 
-const walletOptions = {
+const options = {
   wallets: [
     new PhantomWalletAdapter(),
     new SlopeWalletAdapter(),
@@ -24,5 +24,5 @@ const walletOptions = {
 }
 
 createApp(App)
-  .use(SolanaWallets, walletOptions)
+  .use(web3, options)
   .mount('#app')
