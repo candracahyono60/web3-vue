@@ -23,6 +23,7 @@ const config = {
     // https://github.com/antfu/unplugin-auto-import
     AutoImport({
       imports: ['vue', '@vueuse/core', {
+        '~/composables/dark': ['isDark', 'toggleDark'],
         '~/composables/wallet': ['initWallet', 'useWallet'],
         '~/composables/anchorWallet': ['useAnchorWallet'],
       }],
