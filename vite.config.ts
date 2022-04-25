@@ -23,7 +23,7 @@ const config = {
     // https://github.com/antfu/unplugin-auto-import
     AutoImport({
       imports: ['vue', '@vueuse/core', {
-        '~/useWallet': ['initWallet', 'useWallet'],
+        '~/composables/useWallet': ['initWallet', 'useWallet'],
       }],
       dts: '../src/auto-imports.d.ts',
       eslintrc: {
