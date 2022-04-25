@@ -7,7 +7,6 @@ import {
   SlopeWalletAdapter,
   SolflareWalletAdapter,
 } from '@solana/wallet-adapter-wallets'
-// import { initWallet, useWallet } from '~/useWallet'
 import type { WalletStoreProps } from '~/createWalletStore'
 
 const {

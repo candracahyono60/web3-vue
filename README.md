@@ -47,21 +47,26 @@ createApp(App)
 
 This will initialize the wallet store and create a new `$wallet` global property that you can access inside any component.
 
-Note that you can also initialize the wallet store manually using the `initWallet` method like so.
+Please note that you can also initialize the wallet store manually using the globally-accessible `initWallet` method:
 
 ```js
-import { initWallet } from 'web3-vue'
 initWallet(walletOptions)
 ```
 
-Finally, import and render the `WalletLogin` component to allow users to select a wallet to connect to it.
+Finally, import and render the `WalletLoginButton` component to allow users to select a wallet to connect to it.
 
 ```vue
 <script setup>
-import { WalletLogin } from 'web3-vue'
+import { WalletLoginButton } from 'web3-vue'
 </script>
 
 <template>
-  <WalletLogin />
+  <WalletLoginButton
+    theme="light"
+    providers="phantom, slope, solflare"
+    :auto-connect="false"
+    :with-chevron="true"
+    text="Select Wallet"
+  />
 </template>
 ```
