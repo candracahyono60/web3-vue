@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import type { Wallet } from '~/createWalletStore'
+import type { Wallet } from '~/composables'
 
 const { wallet } = defineProps<{
   wallet: Wallet

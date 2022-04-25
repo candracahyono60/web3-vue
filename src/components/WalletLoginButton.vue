@@ -7,7 +7,7 @@ import {
   SlopeWalletAdapter,
   SolflareWalletAdapter,
 } from '@solana/wallet-adapter-wallets'
-import type { WalletStoreProps } from '~/createWalletStore'
+import type { WalletStoreProps } from '~/composables'
 
 const {
   theme = 'light',
