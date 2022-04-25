@@ -1,6 +1,4 @@
 <script setup lang="ts">
-import { useWallet } from '~/useWallet'
-
 const { disabled } = defineProps<{
   disabled: boolean
 }>()

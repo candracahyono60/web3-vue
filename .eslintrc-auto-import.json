@@ -95,6 +95,7 @@
     "unrefElement": true,
     "until": true,
     "useActiveElement": true,
+    "useAnchorWallet": true,
     "useAsyncQueue": true,
     "useAsyncState": true,
     "useAttrs": true,

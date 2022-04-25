@@ -1,7 +1,6 @@
 import type { PublicKey, Transaction } from '@solana/web3.js'
 import type { Ref } from 'vue'
 import { computed } from 'vue'
-import { useWallet } from './useWallet'
 
 export interface AnchorWallet {
   publicKey: PublicKey

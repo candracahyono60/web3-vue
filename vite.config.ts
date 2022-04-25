@@ -24,6 +24,7 @@ const config = {
     AutoImport({
       imports: ['vue', '@vueuse/core', {
         '~/composables/useWallet': ['initWallet', 'useWallet'],
+        '~/composables/useAnchorWallet': ['useAnchorWallet'],
       }],
       dts: '../src/auto-imports.d.ts',
       eslintrc: {
