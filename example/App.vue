@@ -4,7 +4,7 @@ import { useLocalStorage } from '@vueuse/core'
 import { Connection, Keypair, PublicKey, SystemProgram, clusterApiUrl } from '@solana/web3.js'
 import { AnchorProvider, Program } from '@project-serum/anchor'
 import { useAnchorWallet } from '../src'
-import WalletLogin from '../src/components/WalletLogin.vue'
+import WalletLoginButton from '../src/components/WalletLoginButton.vue'
 import idl from './idl.json'
 
 const programID = new PublicKey(idl.metadata.address)
@@ -12,7 +12,7 @@ const preflightCommitment = 'processed'
 
 export default {
   components: {
-    WalletLogin,
+    WalletLoginButton,
   },
 
   setup() {
@@ -78,11 +78,15 @@ export default {
 <template>
   <div class="h-screen w-screen flex" :class="dark ? 'bg-gray-900 text-gray-100' : 'bg-gray-100 text-gray-700'">
     <div class="absolute top-0 right-0 p-8 flex items-center space-x-8">
-      <WalletLogin
+      <WalletLoginButton
         :theme="dark ? 'dark' : 'light'"
-        provider="phantom, slope, solflare"
+        providers="phantom, slope, solflare"
         :auto-connect="true"
-      />
+        :with-chevron="false"
+        text="Select Me"
+      >
+        Select Me
+      </WalletLoginButton>
 
       <button class="rounded-full p-3" :class="dark ? 'bg-white/10 hover:bg-white/20 text-gray-200' : 'bg-black/10 hover:bg-black/20 text-gray-600'" @click="dark = !dark">
         <svg v-if="dark" xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">

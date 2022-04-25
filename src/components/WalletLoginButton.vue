@@ -7,18 +7,21 @@ import {
   SlopeWalletAdapter,
   SolflareWalletAdapter,
 } from '@solana/wallet-adapter-wallets'
-import WalletIcon from './WalletIcon.vue'
-import { initWallet } from '~/useWallet'
+// import { initWallet, useWallet } from '~/useWallet'
 import type { WalletStoreProps } from '~/createWalletStore'
 
 const {
   theme = 'light',
-  provider = 'phantom, slope, solflare',
+  providers = 'phantom, slope, solflare',
   autoConnect = false,
+  withChevron = true,
+  text = 'Select Wallet',
 } = defineProps<{
   theme?: string
-  provider?: string
+  providers?: string
   autoConnect: boolean
+  withChevron?: boolean
+  text?: string
 }>()
 
 // eslint-disable-next-line no-console
@@ -26,13 +29,13 @@ console.log('theme', theme)
 
 const wallets: (PhantomWalletAdapter | SlopeWalletAdapter | SolflareWalletAdapter)[] = []
 
-if (provider.includes('phantom'))
+if (providers.includes('phantom'))
   wallets.push(new PhantomWalletAdapter())
 
-if (provider.includes('slope'))
+if (providers.includes('slope'))
   wallets.push(new SlopeWalletAdapter())
 
-if (provider.includes('solflare'))
+if (providers.includes('solflare'))
   wallets.push(new SolflareWalletAdapter({ network: WalletAdapterNetwork.Devnet }))
 
 const options: WalletStoreProps = {
@@ -42,14 +45,21 @@ const options: WalletStoreProps = {
 
 initWallet(options)
 
-// const { publicKey, wallet, disconnect } = useWallet()
+const { publicKey, wallet, connect } = useWallet()
 
-// const publicKeyBase58 = $computed(() => publicKey.value?.toBase58())
-// const publicKeyTrimmed = computed(() => {
-//   if (!wallet.value || !publicKeyBase58)
-//     return null
-//   return `${publicKeyBase58.slice(0, 4)}..${publicKeyBase58.slice(-4)}`
-// })
+const publicKeyBase58 = $computed(() => publicKey.value?.toBase58())
+
+// eslint-disable-next-line no-console
+console.log('publicKeyBase58', publicKeyBase58)
+
+const publicKeyTrimmed = computed(() => {
+  if (!wallet.value || !publicKeyBase58)
+    return null
+  return `${publicKeyBase58.slice(0, 4)}..${publicKeyBase58.slice(-4)}`
+})
+
+// eslint-disable-next-line no-console
+console.log('publicKeyTrimmed', publicKeyTrimmed)
 
 // const { copy, copied: addressCopied, isSupported: canCopy } = useClipboard()
 // const copyAddress = () => publicKeyBase58 && copy(publicKeyBase58)
@@ -62,8 +72,9 @@ initWallet(options)
         :class="open ? '' : 'text-opacity-90'"
         class="inline-flex items-center px-3 py-2 text-base font-medium text-white bg-indigo-700 rounded-md group hover:text-opacity-100 focus:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-opacity-75"
       >
-        <span>{{ 'Select Wallet' }}</span>
+        <span>{{ text }}</span>
         <ChevronDownIcon
+          v-if="withChevron"
           :class="open ? '' : 'text-opacity-70'"
           class="w-5 h-5 ml-2 text-indigo-300 transition duration-150 ease-in-out group-hover:text-opacity-80"
           aria-hidden="true"
@@ -89,6 +100,7 @@ initWallet(options)
                 v-for="item in wallets"
                 :key="item.name"
                 class="flex items-center p-2 -m-3 transition duration-150 ease-in-out rounded-lg hover:bg-gray-50 focus:outline-none focus-visible:ring focus-visible:ring-indigo-500 focus-visible:ring-opacity-50 cursor-pointer"
+                @click="connect()"
               >
                 <div class="flex justify-between items-center w-full">
                   <h2 class="text-lg font-medium text-gray-900">
