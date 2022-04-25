@@ -21,7 +21,8 @@
     "devnet",
     "mainnet",
     "keypair",
-    "booleanish"
+    "booleanish",
+    "composables",
   ],
   "editor.formatOnSave": true,
   "editor.codeActionsOnSave": {
