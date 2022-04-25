@@ -57,10 +57,10 @@
     "vue": "^3.2.25"
   },
   "devDependencies": {
-    "@antfu/eslint-config": "0.20.7",
+    "@antfu/eslint-config": "0.21.1",
     "@babel/runtime": "7.17.9",
     "@babel/types": "7.17.0",
-    "@headlessui/vue": "1.5.0",
+    "@headlessui/vue": "1.6.0",
     "@heroicons/vue": "1.0.6",
     "@project-serum/anchor": "0.24.2",
     "@solana/wallet-adapter-wallets": "0.16.0",
@@ -82,7 +82,7 @@
     "autoprefixer": "10.4.5",
     "eslint": "8.14.0",
     "eslint-plugin-cypress": "2.12.1",
-    "pnpm": "6.32.9",
+    "pnpm": "6.32.10",
     "postcss": "8.4.12",
     "postcss-import": "14.1.0",
     "prettier": "2.6.2",
@@ -93,7 +93,7 @@
     "unplugin-auto-import": "0.7.1",
     "unplugin-vue-components": "0.19.3",
     "vite": "2.9.5",
-    "vitest": "0.9.4",
+    "vitest": "0.10.0",
     "vue-tsc": "0.34.10"
   },
   "engines": {
