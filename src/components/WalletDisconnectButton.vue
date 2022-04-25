@@ -1,6 +1,5 @@
 <script setup lang="ts">
 import WalletIcon from './WalletIcon.vue'
-import { useWallet } from '~/useWallet'
 
 const { disabled } = defineProps<{
   disabled: boolean

@@ -2,7 +2,6 @@
 import { computed, defineComponent, nextTick, ref, toRefs, watch } from 'vue'
 import { onClickOutside, onKeyStroke, useScrollLock } from '@vueuse/core'
 import WalletIcon from './WalletIcon.vue'
-import { useWallet } from '~/useWallet'
 
 export default defineComponent({
   components: {
