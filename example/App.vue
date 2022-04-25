@@ -81,7 +81,7 @@ export default {
       <WalletLogin
         :theme="dark ? 'dark' : 'light'"
         provider="phantom, slope, solflare"
-        auto-connect="true"
+        :auto-connect="true"
       />
 
       <button class="rounded-full p-3" :class="dark ? 'bg-white/10 hover:bg-white/20 text-gray-200' : 'bg-black/10 hover:bg-black/20 text-gray-600'" @click="dark = !dark">

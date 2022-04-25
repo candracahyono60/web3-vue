@@ -44,13 +44,6 @@ initWallet(options)
 
 // const { publicKey, wallet, disconnect } = useWallet()
 
-// const dropdownPanel = ref<HTMLElement>()
-// let dropdownOpened = $ref(false)
-// const openDropdown = () => (dropdownOpened = true)
-// const closeDropdown = () => (dropdownOpened = false)
-
-// onClickOutside(dropdownPanel, closeDropdown)
-
 // const publicKeyBase58 = $computed(() => publicKey.value?.toBase58())
 // const publicKeyTrimmed = computed(() => {
 //   if (!wallet.value || !publicKeyBase58)
@@ -67,12 +60,12 @@ initWallet(options)
     <Popover v-slot="{ open }" class="relative">
       <PopoverButton
         :class="open ? '' : 'text-opacity-90'"
-        class="inline-flex items-center px-3 py-2 text-base font-medium text-white bg-orange-700 rounded-md group hover:text-opacity-100 focus:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-opacity-75"
+        class="inline-flex items-center px-3 py-2 text-base font-medium text-white bg-indigo-700 rounded-md group hover:text-opacity-100 focus:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-opacity-75"
       >
         <span>{{ 'Select Wallet' }}</span>
         <ChevronDownIcon
           :class="open ? '' : 'text-opacity-70'"
-          class="w-5 h-5 ml-2 text-orange-300 transition duration-150 ease-in-out group-hover:text-opacity-80"
+          class="w-5 h-5 ml-2 text-indigo-300 transition duration-150 ease-in-out group-hover:text-opacity-80"
           aria-hidden="true"
         />
       </PopoverButton>
@@ -86,7 +79,7 @@ initWallet(options)
         leave-to-class="translate-y-1 opacity-0"
       >
         <PopoverPanel
-          class="absolute z-10 w-screen max-w-sm px-4 mt-3 transform -translate-x-1/2 left-1/2 sm:px-0 lg:max-w-xs"
+          class="absolute z-10 w-screen max-w-sm px-4 mt-3 transform -translate-x-1/2 left-1/2 sm:px-0 lg:w-48"
         >
           <div
             class="overflow-hidden rounded-lg shadow-lg ring-1 ring-black ring-opacity-5"
@@ -95,17 +88,17 @@ initWallet(options)
               <a
                 v-for="item in wallets"
                 :key="item.name"
-                class="flex items-center p-2 -m-3 transition duration-150 ease-in-out rounded-lg hover:bg-gray-50 focus:outline-none focus-visible:ring focus-visible:ring-orange-500 focus-visible:ring-opacity-50 cursor-pointer"
+                class="flex items-center p-2 -m-3 transition duration-150 ease-in-out rounded-lg hover:bg-gray-50 focus:outline-none focus-visible:ring focus-visible:ring-indigo-500 focus-visible:ring-opacity-50 cursor-pointer"
               >
-                <div
-                  class="flex items-center justify-center flex-shrink-0 w-10 h-10 text-white sm:h-12 sm:w-12"
-                >
-                  <WalletIcon v-if="item" :wallet="item" />
-                </div>
-                <div class="ml-4">
-                  <h2 class="text-2xl font-medium text-gray-900">
+                <div class="flex justify-between items-center w-full">
+                  <h2 class="text-lg font-medium text-gray-900">
                     {{ item.name }}
                   </h2>
+                  <div
+                    class="flex items-center justify-center flex-shrink-0 w-10 h-10 text-white"
+                  >
+                    <WalletIcon v-if="item" :wallet="item" />
+                  </div>
                 </div>
               </a>
             </div>

@@ -9,6 +9,7 @@ declare module '@vue/runtime-core' {
     WalletDisconnectButton: typeof import('./components/WalletDisconnectButton.vue')['default']
     WalletIcon: typeof import('./components/WalletIcon.vue')['default']
     WalletLogin: typeof import('./components/WalletLogin.vue')['default']
+    WalletModalProvider: typeof import('./components/WalletModalProvider.vue')['default']
   }
 }
 
