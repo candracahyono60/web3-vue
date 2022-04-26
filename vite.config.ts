@@ -48,7 +48,7 @@ const config = {
   build: {
     lib: {
       entry: resolve(__dirname, 'src/index.ts'),
-      name: 'crypto-wallets-vue',
+      name: 'web3-vue',
     },
 
     rollupOptions: {

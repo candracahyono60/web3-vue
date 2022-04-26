@@ -15,12 +15,12 @@
   ],
   "license": "MIT",
   "author": "Open Crypto Labs",
-  "main": "./dist/crypto-wallets-vue.umd.js",
-  "module": "./dist/crypto-wallets-vue.es.js",
+  "main": "./dist/web3-vue.umd.js",
+  "module": "./dist/web3-vue.es.js",
   "exports": {
     ".": {
-      "import": "./dist/crypto-wallets-vue.es.js",
-      "require": "./dist/crypto-wallets-vue.umd.js"
+      "import": "./dist/web3-vue.es.js",
+      "require": "./dist/web3-vue.umd.js"
     },
     "./styles.css": "./src/styles/index.css",
     "./postcss.config.js": "./postcss.config.js"
