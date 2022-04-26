@@ -11,12 +11,14 @@ This library will be a collection of somewhat opinionated, yet configurable comp
 To get started, you'll need to install the `web3-vue` npm package as well as the wallets adapters provided by Solana.
 
 ```shell
-npm install @opencrypto/web3-vue
+npm install @openweb/web3-vue
+pnpm install @openweb/web3-vue
+yarn add @openweb/web3-vue
 ```
 
 ## Setup
 
-Next, you can install Solana Wallets Vue as a plugin like so.
+Next up is the configuration of our `walletOptions`. You may provide any number of the available Solana Wallet adapters as plugins as follows:
 
 ```js
 import { createApp } from 'vue'
