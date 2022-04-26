@@ -1,4 +1,4 @@
-# Web3 Vue Components
+# Web3 Vue Component Library
 
 This library will be a collection of somewhat opinionated, yet configurable components for Vue 3. In our current state, we integrate with Solana wallets. Future drivers to be coming. Readme in wip
 
@@ -69,4 +69,17 @@ import { WalletLoginButton } from 'web3-vue'
     text="Select Wallet"
   />
 </template>
+```
+
+## Globally Accessible
+
+The following is a list of all the easily, globally accessible methods & variables:
+
+```js
+// wallet
+initWallet(walletOptions)
+
+// other
+isDark // boolean which indicates current state of "dark mode"
+toggleDark() // toggles the isDark boolean
 ```
