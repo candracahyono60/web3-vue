@@ -6,6 +6,8 @@ import Components from 'unplugin-vue-components/vite'
 
 /** @type {import('vite').UserConfig} */
 const config = {
+  root: './example/',
+
   resolve: {
     dedupe: ['vue'],
     alias: {
@@ -26,7 +28,7 @@ const config = {
         '~/composables/wallet': ['initWallet', 'useWallet'],
         '~/composables/anchorWallet': ['useAnchorWallet'],
       }],
-      dts: 'src/auto-imports.d.ts',
+      dts: '../src/auto-imports.d.ts',
       eslintrc: {
         enabled: true,
       },
@@ -34,9 +36,9 @@ const config = {
 
     // https://github.com/antfu/unplugin-vue-components
     Components({
-      dirs: ['src/components'],
+      dirs: ['../src/components'],
       extensions: ['vue'],
-      dts: 'src/components.d.ts',
+      dts: '../src/components.d.ts',
     }),
   ],
 
