@@ -59,10 +59,10 @@
     "@solana/wallet-adapter-wallets": "^0.16"
   },
   "dependencies": {
-    "@solana/wallet-adapter-base": "^0.9.3",
-    "@solana/web3.js": "^1.32.1",
+    "@solana/wallet-adapter-base": "^0.9.5",
+    "@solana/web3.js": "^1.41.1",
     "pinia": "^2.0.13",
-    "vue": "^3.2.25"
+    "vue": "^3.2.33"
   },
   "devDependencies": {
     "@antfu/eslint-config": "0.21.1",
@@ -103,8 +103,8 @@
     "vue-tsc": "0.34.10"
   },
   "engines": {
-    "node": ">=16.*",
-    "pnpm": ">=6"
+    "node": ">=v16.15.0",
+    "pnpm": ">=6.32.11"
   },
   "contributors": [
     "Chris Breuer <chris@meema.xyz>"
