@@ -1,6 +1,7 @@
 {
   "name": "web3-vue",
-  "version": "0.0.1",
+  "version": "0.0.2",
+  "type": "module",
   "description": "The easy way to integrate web3 technologies with Vue 3. Currently supporting the Solana blockchain.",
   "keywords": [
     "component",
@@ -37,9 +38,7 @@
     "dev": "vite --port 3333 --open",
     "build": "vite build && vue-tsc --emitDeclarationOnly",
     "preview": "vite preview",
-    "vitebook:dev": "vitebook dev",
-    "vitebook:build": "vitebook build",
-    "vitebook:preview": "vitebook preview",
+    "changelog": "conventional-changelog -p angular -i CHANGELOG.md -s",
     "lint": "eslint .",
     "lint:fix": "eslint . --fix",
     "test": "vitest",
