@@ -1,6 +1,6 @@
 {
   "name": "web3-vue",
-  "version": "0.0.5",
+  "version": "0.0.6",
   "type": "module",
   "description": "The easy way to integrate web3 technologies with Vue 3. Currently supporting the Solana blockchain.",
   "keywords": [
@@ -46,8 +46,8 @@
     "coverage": "vitest run --coverage",
     "typecheck": "vue-tsc --emitDeclarationOnly",
     "preinstall": "node .scripts/check-for-pnpm.js && node .scripts/check-node-version.js",
-    "prerelease": "standard-version",
-    "release": "prerelease && git push --follow-tags && pnpm publish"
+    "release": "standard-version",
+    "publish": "release && git push --follow-tags && pnpm publish"
   },
   "peerDependencies": {
     "@solana/wallet-adapter-wallets": "^0.16"
