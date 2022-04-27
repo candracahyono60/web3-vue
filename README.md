@@ -48,7 +48,7 @@ import { WalletLoginButton } from 'web3-vue'
 _Please note, the above syntax assumes you are using Vue's `reactivityTransform: true`. Read more [https://vuejs.org/guide/extras/reactivity-transform.html](here).
 _
 
-## Globally Accessible
+### Globally Accessible Helpers
 
 The following is a list of all the easily, globally accessible methods & variables:
 
@@ -61,15 +61,15 @@ isDark // boolean which indicates current state of "dark mode"
 toggleDark() // toggles the isDark boolean
 ```
 
-## 📈 Changelog
+## Changelog 📈
 
 Please see our [releases](https://github.com/meemalabs/web3-vue/releases) page for more information on what has changed recently.
 
-## 💪🏼 Contributing
+## Contributing 💪🏼
 
 Please see [CONTRIBUTING](.github/CONTRIBUTING.md) for details.
 
-## 🏝 Community
+## Community 🏝
 
 For help, discussion about best practices, or any other conversation that would benefit from being searchable:
 
@@ -79,7 +79,7 @@ For casual chit-chat with others using this package:
 
 [Join the Meema Discord Server](https://discord.meema.io)
 
-## 📄 License
+## License 📄
 
 The MIT License (MIT). Please see [LICENSE](LICENSE.md) for more information.
 
