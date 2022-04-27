@@ -1,14 +1,25 @@
-# Web3 Vue Component Library
+# Web3 Vue Components
 
-This library will be a collection of somewhat opinionated, yet configurable components for Vue 3. In our current state, we integrate with Solana wallets. Future drivers to be coming. Readme in wip
+This library will be a collection of somewhat opinionated, yet configurable "web3 components" for Vue 3. In our current state, we integrate with the Solana blockchain. Future blockchain drivers to be coming.
 
 <!-- ⚡️ [View demo](https://web3-vue.netlify.app/) / [Browse demo code](./example) -->
 
 <!-- todo: add screenshot here -->
 
-## Installation
+## Features 🐙
 
-To get started, you'll need to install the `web3-vue` npm package as well as the wallets adapters provided by Solana.
+This library is meant to help ease the "onboarding & learning curve" when "jumping" into the web3 territory by providing a library of all sorts of useful composables.
+
+- `<WalletLoginButton />`
+  - quickly & simply integrate Solana wallets
+-
+- Peer-reviewed blockchain integrations
+
+Read more about these features in their respective [docs](https://meema.xyz/docs).
+
+## Get Started 💡
+
+To get started, you simply need to install the `web3-vue` npm package.
 
 ```shell
 npm install @openweb/web3-vue
@@ -16,46 +27,7 @@ pnpm install @openweb/web3-vue
 yarn add @openweb/web3-vue
 ```
 
-## Setup
-
-Next up is the configuration of our `walletOptions`. You may provide any number of the available Solana Wallet adapters as plugins as follows:
-
-```js
-import { createApp } from 'vue'
-import SolanaWallets from 'web3-vue'
-
-import { WalletAdapterNetwork } from '@solana/wallet-adapter-base'
-
-import {
-  PhantomWalletAdapter,
-  SlopeWalletAdapter,
-  SolflareWalletAdapter,
-} from '@solana/wallet-adapter-wallets'
-import App from './App.vue'
-
-const walletOptions = {
-  wallets: [
-    new PhantomWalletAdapter(),
-    new SlopeWalletAdapter(),
-    new SolflareWalletAdapter({ network: WalletAdapterNetwork.Devnet }),
-  ],
-  autoConnect: true,
-}
-
-createApp(App)
-  .use(SolanaWallets, walletOptions)
-  .mount('#app')
-```
-
-This will initialize the wallet store and create a new `$wallet` global property that you can access inside any component.
-
-Please note that you can also initialize the wallet store manually using the globally-accessible `initWallet` method:
-
-```js
-initWallet(walletOptions)
-```
-
-Finally, import and render the `WalletLoginButton` component to allow users to select a wallet to connect to it.
+Next up, we need to make use of one of the components.
 
 ```vue
 <script setup>
@@ -72,6 +44,9 @@ import { WalletLoginButton } from 'web3-vue'
   />
 </template>
 ```
+
+_Please note, the above syntax assumes you are using Vue's `reactivityTransform: true`. Read more [https://vuejs.org/guide/extras/reactivity-transform.html](here).
+_
 
 ## Globally Accessible
 
