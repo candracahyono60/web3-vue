@@ -45,8 +45,7 @@ import { WalletLoginButton } from 'web3-vue'
 </template>
 ```
 
-_Please note, the above syntax assumes you are using Vue's `reactivityTransform: true`. Read more [https://vuejs.org/guide/extras/reactivity-transform.html](here).
-_
+_Please note, the above syntax assumes you are using Vue's `reactivityTransform: true`. Read more [here](https://vuejs.org/guide/extras/reactivity-transform.html)._
 
 ### Globally Accessible Helpers
 

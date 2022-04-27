@@ -47,6 +47,7 @@
     "coverage": "vitest run --coverage",
     "typecheck": "vue-tsc --emitDeclarationOnly",
     "preinstall": "node .scripts/check-for-pnpm.js && node .scripts/check-node-version.js",
+    "prepare": "husky install",
     "release:dry": "standard-version --dry-run",
     "release": "standard-version",
     "publish": "release && git push --follow-tags && pnpm publish"
@@ -61,7 +62,6 @@
   "dependencies": {
     "@solana/wallet-adapter-base": "^0.9.5",
     "@solana/web3.js": "^1.41.1",
-    "pinia": "^2.0.13",
     "vue": "^3.2.33"
   },
   "devDependencies": {
