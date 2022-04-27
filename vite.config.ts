@@ -10,6 +10,7 @@ const config = {
     dedupe: ['vue'],
     alias: {
       '~': resolve(__dirname, 'src'),
+      'vue': 'vue/dist/vue.esm-bundler',
     },
   },
 
@@ -38,10 +39,6 @@ const config = {
       dts: 'src/components.d.ts',
     }),
   ],
-
-  define: {
-    'process.env': {},
-  },
 
   build: {
     lib: {
