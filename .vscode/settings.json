@@ -23,6 +23,7 @@
     "keypair",
     "booleanish",
     "composables",
+    "commitlint",
   ],
   "editor.formatOnSave": true,
   "editor.codeActionsOnSave": {
