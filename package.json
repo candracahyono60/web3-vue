@@ -1,6 +1,6 @@
 {
   "name": "web3-vue",
-  "version": "0.0.3",
+  "version": "0.0.4",
   "type": "module",
   "description": "The easy way to integrate web3 technologies with Vue 3. Currently supporting the Solana blockchain.",
   "keywords": [
