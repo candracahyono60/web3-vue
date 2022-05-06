@@ -89,7 +89,7 @@
     "eslint": "8.14.0",
     "eslint-plugin-cypress": "2.12.1",
     "husky": "^7.0.4",
-    "pnpm": "6.32.11",
+    "pnpm": "7.0.0",
     "postcss": "8.4.12",
     "postcss-import": "14.1.0",
     "prettier": "2.6.2",
@@ -105,7 +105,7 @@
   },
   "engines": {
     "node": ">=v16.15.0",
-    "pnpm": ">=6.32.11"
+    "pnpm": ">=7.0.0"
   },
   "contributors": [
     "Chris Breuer <chris@meema.xyz>"
